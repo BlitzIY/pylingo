@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>PyLingo — Dashboard</title>
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/layout.css" />
+  <link rel="stylesheet" href="css/theme.css" />
+</head>
+<body>
+  <header class="site-header">
+    <h1><a href="index.html">PyLingo</a></h1>
+    <nav>
+      <a href="course.html">Cursos</a>
+      <a href="shop.html">Loja</a>
+      <a href="profile.html">Perfil</a>
+    </nav>
+  </header>
+
+  <main class="container dashboard-grid">
+    <section class="panel">
+      <h2>Progresso</h2>
+      <div id="progress-summary">Carregando progresso...</div>
+    </section>
+
+    <section class="panel">
+      <h2>Próxima lição</h2>
+      <div id="next-lesson">Carregando lição...</div>
+    </section>
+
+    <section class="panel">
+      <h2>Conquistas</h2>
+      <div id="achievements">Carregando conquistas...</div>
+    </section>
+  </main>
+
+  <script src="js/user.js" defer></script>
+  <script src="js/progress.js" defer></script>
+  <script src="js/gamification.js" defer></script>
+</body>
+</html>
