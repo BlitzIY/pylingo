@@ -1,0 +1,20 @@
+[
+  {
+    "id": "achv_first_lesson",
+    "name": "Primeira Lição",
+    "description": "Concluiu a primeira lição.",
+    "points": 20
+  },
+  {
+    "id": "achv_5_lessons",
+    "name": "Estudante Dedicado",
+    "description": "Concluiu 5 lições.",
+    "points": 100
+  },
+  {
+    "id": "achv_100_points",
+    "name": "Colecionador de Pontos",
+    "description": "Acumulou 100 pontos.",
+    "points": 0
+  }
+]
