@@ -1,0 +1,64 @@
+/* Layout e componentes */
+.hero{
+  background:linear-gradient(180deg, rgba(0,102,255,0.06), rgba(0,102,255,0.02));
+  padding:2rem;
+  border-radius:12px;
+  margin-bottom:1rem;
+}
+
+.features{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:1rem;
+  margin-top:1rem;
+}
+
+.dashboard-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:1rem;
+}
+
+.lesson-list{
+  list-style:none;
+  padding:0;
+  margin:0;
+}
+.lesson-list li{
+  background:var(--card);
+  padding:0.75rem;
+  border-radius:8px;
+  margin-bottom:0.5rem;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.lesson-container{
+  display:grid;
+  grid-template-columns: 1fr 360px;
+  gap:1rem;
+  align-items:start;
+}
+
+.exercise .output{
+  background:#0b1220;
+  color:#d1fae5;
+  padding:0.75rem;
+  border-radius:6px;
+  margin-top:0.5rem;
+  white-space:pre-wrap;
+  max-height:200px;
+  overflow:auto;
+}
+
+.shop-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+  gap:1rem;
+}
+.shop-item{
+  padding:0.75rem;
+  background:var(--card);
+  border-radius:8px;
+}
