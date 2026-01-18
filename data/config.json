@@ -1,0 +1,20 @@
+{
+  "site": {
+    "name": "PyLingo",
+    "locale": "pt-BR"
+  },
+  "shop": [
+    {
+      "id": "theme_dark",
+      "name": "Tema Escuro",
+      "description": "Desbloqueia o tema escuro premium.",
+      "price": 50
+    },
+    {
+      "id": "avatar_cat",
+      "name": "Avatar: Gato",
+      "description": "Avatar fofo para seu perfil.",
+      "price": 30
+    }
+  ]
+}
