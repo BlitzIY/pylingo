@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>PyLingo — Home</title>
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/layout.css" />
+  <link rel="stylesheet" href="css/theme.css" />
+</head>
+<body>
+  <header class="site-header">
+    <h1><a href="index.html">PyLingo</a></h1>
+    <nav>
+      <a href="dashboard.html">Dashboard</a>
+      <a href="course.html">Cursos</a>
+      <a href="shop.html">Loja</a>
+      <a href="profile.html">Perfil</a>
+      <a href="login.html" id="auth-link">Entrar</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <h2>Aprenda Python na prática</h2>
+      <p>Exercícios interativos, acompanhamento de progresso e gamificação.</p>
+      <p><a class="btn" href="course.html">Começar curso</a></p>
+    </section>
+
+    <section class="features">
+      <article>
+        <h3>Liçõess práticas</h3>
+        <p>Exercícios passo-a-passo com feedback imediato.</p>
+      </article>
+      <article>
+        <h3>Progresso</h3>
+        <p>Acompanhe seu avanço e ganhe conquistas.</p>
+      </article>
+      <article>
+        <h3>Loja</h3>
+        <p>Troque pontos por itens e temas.</p>
+      </article>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>© <span id="year"></span> PyLingo — Projetinho de estudo</p>
+  </footer>
+
+  <script>
+    // Atualiza ano no rodapé
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+  <script src="js/auth.js" defer></script>
+  <script src="js/user.js" defer></script>
+</body>
+</html>
