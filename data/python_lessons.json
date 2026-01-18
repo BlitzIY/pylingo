@@ -1,0 +1,35 @@
+[
+  {
+    "id": 1,
+    "title": "Introdução ao Python",
+    "slug": "intro-python",
+    "difficulty": "Iniciante",
+    "duration": "5 min",
+    "content": "Nesta lição você aprenderá o básico de Python: print, tipos e variáveis.",
+    "exercise": "Imprima 'Olá, PyLingo!' usando print().",
+    "starter_code": "print('Olá, PyLingo!')",
+    "points": 10
+  },
+  {
+    "id": 2,
+    "title": "Estruturas de Controle",
+    "slug": "controle",
+    "difficulty": "Iniciante",
+    "duration": "10 min",
+    "content": "If, else e loops (for/while).",
+    "exercise": "Crie um loop que some números de 1 a 10.",
+    "starter_code": "# escreva seu código aqui\n",
+    "points": 15
+  },
+  {
+    "id": 3,
+    "title": "Funções",
+    "slug": "funcoes",
+    "difficulty": "Intermediário",
+    "duration": "12 min",
+    "content": "Definindo e usando funções em Python.",
+    "exercise": "Crie uma função que receba um nome e retorne 'Olá, <nome>!'",
+    "starter_code": "def saudacao(nome):\n    # implemente aqui\n    return f'Olá, {nome}!'\n",
+    "points": 20
+  }
+]
