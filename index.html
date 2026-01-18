@@ -1,57 +1,745 @@
 <!doctype html>
-<html lang="pt-BR">
+<html lang="pt-BR" class="dark-theme">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>PyLingo — Home</title>
-  <link rel="stylesheet" href="css/base.css" />
-  <link rel="stylesheet" href="css/layout.css" />
-  <link rel="stylesheet" href="css/theme.css" />
+  <meta name="description" content="PyLingo: A revolução no ensino de Python. Aprenda programando em um ambiente gamificado, sem instalação e sem tédio." />
+  <title>PyLingo 🚀 Domine Python Jogando</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      /* Palette Cyber-Education */
+      --bg-body: #0f172a;
+      --bg-card: #1e293b;
+      --bg-card-glass: rgba(30, 41, 59, 0.7);
+      
+      --primary: #3b82f6;
+      --primary-glow: rgba(59, 130, 246, 0.5);
+      --secondary: #8b5cf6;
+      --accent-python: #fbbf24; /* Amarelo Python */
+      --accent-python-blue: #38bdf8; /* Azul Python */
+      
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --success: #10b981;
+      
+      --font-ui: 'Inter', sans-serif;
+      --font-code: 'Fira Code', monospace;
+      
+      --radius: 12px;
+      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5), 0 4px 6px -2px rgba(0, 0, 0, 0.3);
+      --glow: 0 0 20px var(--primary-glow);
+    }
+
+    /* Reset & Base */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    
+    body {
+      font-family: var(--font-ui);
+      background-color: var(--bg-body);
+      color: var(--text-main);
+      line-height: 1.6;
+      overflow-x: hidden;
+      background-image: 
+        radial-gradient(circle at 10% 20%, rgba(59, 130, 246, 0.1) 0%, transparent 40%),
+        radial-gradient(circle at 90% 80%, rgba(139, 92, 246, 0.1) 0%, transparent 40%);
+    }
+
+    a { text-decoration: none; color: inherit; transition: 0.3s; }
+    ul { list-style: none; }
+    
+    /* Container Utilitário */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* --- HEADER --- */
+    .site-header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      background: rgba(15, 23, 42, 0.8);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      padding: 1rem 0;
+    }
+
+    .site-header__container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .site-header__brand a {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .site-header__title {
+      font-size: 1.5rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--accent-python-blue), var(--accent-python));
+      -webkit-background-clip: text;
+      -moz-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: -0.5px;
+    }
+
+    .site-nav__list {
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .site-nav__link {
+      color: var(--text-muted);
+      font-weight: 500;
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .site-nav__link:hover {
+      color: var(--text-main);
+      transform: translateY(-2px);
+    }
+
+    /* Botões */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 10px 24px;
+      border-radius: var(--radius);
+      font-weight: 600;
+      cursor: pointer;
+      border: none;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .btn--primary {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: white;
+      box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+    }
+    .btn--primary:hover {
+      box-shadow: 0 8px 20px rgba(59, 130, 246, 0.5);
+      transform: translateY(-2px);
+    }
+
+    .btn--outline {
+      background: transparent;
+      border: 1px solid rgba(255,255,255,0.2);
+      color: var(--text-main);
+    }
+    .btn--outline:hover {
+      border-color: var(--primary);
+      background: rgba(59, 130, 246, 0.1);
+    }
+
+    .btn--ghost {
+      background: rgba(255,255,255,0.05);
+      color: var(--text-main);
+    }
+    .btn--ghost:hover { background: rgba(255,255,255,0.1); }
+
+    /* --- HERO SECTION --- */
+    .hero {
+      padding: 160px 0 100px;
+      position: relative;
+    }
+
+    .hero__content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .hero__title {
+      font-size: 3.5rem;
+      line-height: 1.1;
+      font-weight: 800;
+      margin-bottom: 1.5rem;
+    }
+
+    .text-gradient {
+      background: linear-gradient(to right, #4ade80, #3b82f6);
+      -webkit-background-clip: text;
+      -moz-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero__subtitle {
+      font-size: 1.25rem;
+      color: var(--text-muted);
+      margin-bottom: 2.5rem;
+      max-width: 500px;
+    }
+
+    .hero__stats {
+      display: flex;
+      gap: 40px;
+      margin-bottom: 3rem;
+      padding: 20px;
+      background: rgba(255,255,255,0.03);
+      border-radius: var(--radius);
+      border: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .stat__number {
+      display: block;
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+    .stat__label {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    /* Editor de Código Visual */
+    .code-preview {
+      background: #0d1117;
+      border-radius: var(--radius);
+      border: 1px solid #30363d;
+      box-shadow: var(--shadow-lg), var(--glow);
+      overflow: hidden;
+      transform: perspective(1000px) rotateY(-5deg) rotateX(2deg);
+      transition: transform 0.5s ease;
+    }
+    
+    .code-preview:hover {
+      transform: perspective(1000px) rotateY(0deg) rotateX(0deg);
+    }
+
+    .code-preview__header {
+      background: #161b22;
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      border-bottom: 1px solid #30363d;
+    }
+
+    .code-preview__dots { display: flex; gap: 8px; margin-right: 16px; }
+    .code-preview__dot { width: 12px; height: 12px; border-radius: 50%; }
+    .dot-red { background: #ff5f56; }
+    .dot-yellow { background: #ffbd2e; }
+    .dot-green { background: #27c93f; }
+    
+    .code-preview__title { font-family: var(--font-code); font-size: 0.8rem; color: #8b949e; }
+
+    .code-preview__content {
+      padding: 24px;
+      font-family: var(--font-code);
+      font-size: 0.95rem;
+      color: #e6edf3;
+      overflow-x: auto;
+    }
+    
+    /* Syntax Highlighting Simulado */
+    .syntax-def { color: #ff7b72; } /* def, return */
+    .syntax-func { color: #d2a8ff; } /* nome da funcao */
+    .syntax-var { color: #79c0ff; } /* variaveis */
+    .syntax-str { color: #a5d6ff; } /* strings */
+    .syntax-comment { color: #8b949e; font-style: italic; }
+    .cursor {
+      display: inline-block;
+      width: 2px;
+      height: 1.2em;
+      background-color: var(--primary);
+      animation: blink 1s step-end infinite;
+      vertical-align: text-bottom;
+    }
+
+    /* --- CARDS & GRID --- */
+    .section { padding: 80px 0; }
+    
+    .section__header { text-align: center; margin-bottom: 60px; }
+    .section__badge {
+      display: inline-block;
+      padding: 6px 16px;
+      background: rgba(59, 130, 246, 0.1);
+      color: var(--primary);
+      border-radius: 50px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 16px;
+      border: 1px solid rgba(59, 130, 246, 0.2);
+    }
+    
+    .section__title { font-size: 2.5rem; font-weight: 700; margin-bottom: 16px; }
+    
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+    }
+
+    .feature-card {
+      background: var(--bg-card);
+      padding: 30px;
+      border-radius: var(--radius);
+      border: 1px solid rgba(255,255,255,0.05);
+      transition: 0.3s;
+    }
+    .feature-card:hover {
+      transform: translateY(-10px);
+      background: var(--bg-card-glass);
+      border-color: var(--primary);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .feature-card__icon {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      display: inline-block;
+      background: rgba(255,255,255,0.05);
+      padding: 10px;
+      border-radius: 12px;
+    }
+
+    /* --- GAME UI MOCKUP --- */
+    .game-ui-preview {
+      background: #111;
+      border-radius: 20px;
+      padding: 20px;
+      border: 2px solid #333;
+      position: relative;
+    }
+    .game-ui__stats {
+      display: flex;
+      justify-content: space-between;
+      background: #222;
+      padding: 15px;
+      border-radius: 12px;
+      margin-bottom: 20px;
+    }
+    .game-ui__stat-value {
+      font-family: var(--font-code);
+      font-weight: 700;
+      color: var(--accent-python);
+    }
+
+    /* --- FAQ & FOOTER --- */
+    .faq-grid {
+      display: grid;
+      gap: 20px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    .faq__item {
+      background: var(--bg-card);
+      border-radius: var(--radius);
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.05);
+    }
+    
+    .faq__question {
+      padding: 20px;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      list-style: none;
+    }
+    
+    .faq__question:hover { background: rgba(255,255,255,0.03); }
+    
+    .faq__answer {
+      padding: 0 20px 20px;
+      color: var(--text-muted);
+      border-top: 1px solid rgba(255,255,255,0.05);
+      margin-top: 10px;
+      padding-top: 20px;
+    }
+
+    .site-footer {
+      background: #020617;
+      padding: 80px 0 40px;
+      margin-top: 100px;
+      border-top: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 60px;
+      margin-bottom: 60px;
+    }
+
+    .footer-brand p { color: var(--text-muted); margin-top: 16px; max-width: 300px; }
+    .footer-col h4 { font-weight: 700; margin-bottom: 20px; color: white; }
+    .footer-col ul li { margin-bottom: 12px; }
+    .footer-col a { color: var(--text-muted); }
+    .footer-col a:hover { color: var(--primary); }
+
+    /* Animações */
+    @keyframes blink { 50% { opacity: 0; } }
+    @keyframes float { 0% { transform: translateY(0); } 50% { transform: translateY(-15px); } 100% { transform: translateY(0); } }
+
+    /* Mobile */
+    @media (max-width: 768px) {
+      .hero__content { grid-template-columns: 1fr; text-align: center; }
+      .hero__title { font-size: 2.5rem; }
+      .hero__visual { display: none; } /* Ocultar código em mobile */
+      .site-nav__list { display: none; } /* Simplificado para demo */
+      .footer-grid { grid-template-columns: 1fr; gap: 30px; }
+      .hero__stats { flex-direction: column; gap: 10px; }
+    }
+  </style>
 </head>
+
 <body>
+
   <header class="site-header">
-    <h1><a href="index.html">PyLingo</a></h1>
-    <nav>
-      <a href="dashboard.html">Dashboard</a>
-      <a href="course.html">Cursos</a>
-      <a href="shop.html">Loja</a>
-      <a href="profile.html">Perfil</a>
-      <a href="login.html" id="auth-link">Entrar</a>
-    </nav>
+    <div class="site-header__container container">
+      <div class="site-header__brand">
+        <a href="index.html" aria-label="PyLingo - Home">
+          <span style="font-size: 24px;">🐍</span>
+          <div class="brand-text">
+            <h1 class="site-header__title">PyLingo</h1>
+          </div>
+        </a>
+      </div>
+      
+      <nav id="site-navigation" class="site-nav">
+        <ul class="site-nav__list">
+          <li><a href="#" class="site-nav__link">Cursos</a></li>
+          <li><a href="#" class="site-nav__link">Desafios</a></li>
+          <li><a href="#" class="site-nav__link">Loja de Skins</a></li>
+          <li><a href="#" class="site-nav__link">Rankings</a></li>
+          <li style="margin-left: 20px;">
+            <a href="#" class="btn btn--outline btn--small">Entrar</a>
+          </li>
+          <li>
+            <a href="#" class="btn btn--primary btn--small">Começar Grátis</a>
+          </li>
+        </ul>
+      </nav>
+      <button class="site-header__menu-toggle" style="background:none; border:none; color:white; font-size:1.5rem; display:none;">☰</button>
+    </div>
   </header>
 
-  <main class="container">
+  <main>
+    
     <section class="hero">
-      <h2>Aprenda Python na prática</h2>
-      <p>Exercícios interativos, acompanhamento de progresso e gamificação.</p>
-      <p><a class="btn" href="course.html">Começar curso</a></p>
+      <div class="container hero__content">
+        <div class="hero__text">
+          <div class="section__badge">By BlitzIY</div>
+          <h2 class="hero__title">
+            Codar nunca foi tão <br />
+            <span class="text-gradient">divertido.</span>
+          </h2>
+          <p class="hero__subtitle">
+            O PyLingo transforma a sintaxe chata em pura dopamina. Exercícios gamificados, vidas infinitas e uma comunidade que te ajuda a subir de nível.
+          </p>
+          
+          <div class="hero__cta" style="display: flex; gap: 16px; flex-wrap: wrap;">
+            <a href="#" class="btn btn--primary btn--large">
+              <span>🎮</span> Começar Aventura
+            </a>
+            <a href="#demo" class="btn btn--ghost btn--large">
+              <span>▶️</span> Ver Gameplay
+            </a>
+          </div>
+
+          <div class="hero__stats" style="margin-top: 40px;">
+            <div class="stat">
+              <span class="stat__number text-gradient">15k+</span>
+              <span class="stat__label">Devs Ativos</span>
+            </div>
+            <div class="stat">
+              <span class="stat__number text-gradient">1M+</span>
+              <span class="stat__label">Linhas Codadas</span>
+            </div>
+            <div class="stat">
+              <span class="stat__number text-gradient">4.9/5</span>
+              <span class="stat__label">Avaliação</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero__visual">
+          <div class="code-preview">
+            <div class="code-preview__header">
+              <div class="code-preview__dots">
+                <span class="code-preview__dot dot-red"></span>
+                <span class="code-preview__dot dot-yellow"></span>
+                <span class="code-preview__dot dot-green"></span>
+              </div>
+              <span class="code-preview__title">missao_diaria.py</span>
+            </div>
+            <div class="code-preview__content">
+              <pre id="typewriter"></pre>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
 
-    <section class="features">
-      <article>
-        <h3>Liçõess práticas</h3>
-        <p>Exercícios passo-a-passo com feedback imediato.</p>
-      </article>
-      <article>
-        <h3>Progresso</h3>
-        <p>Acompanhe seu avanço e ganhe conquistas.</p>
-      </article>
-      <article>
-        <h3>Loja</h3>
-        <p>Troque pontos por itens e temas.</p>
-      </article>
+    <section class="section" id="como-funciona">
+      <div class="container">
+        <header class="section__header">
+          <h2 class="section__title">Por que o PyLingo vicia?</h2>
+          <p class="section__subtitle" style="color: var(--text-muted);">Esqueça as aulas monótonas de 2 horas.</p>
+        </header>
+
+        <div class="features-grid">
+          <article class="feature-card">
+            <div class="feature-card__icon">🧠</div>
+            <h3 class="feature-card__title">Micro-Learning</h3>
+            <p style="color: var(--text-muted);">Lições de 5 minutos perfeitas para seu café. Aprenda uma nova função enquanto o servidor faz deploy.</p>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-card__icon">⚔️</div>
+            <h3 class="feature-card__title">Boss Battles</h3>
+            <p style="color: var(--text-muted);">No fim de cada módulo, enfrente um "Chefe": um projeto real que você precisa resolver para passar de fase.</p>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-card__icon">💎</div>
+            <h3 class="feature-card__title">Loja de Itens</h3>
+            <p style="color: var(--text-muted);">Use seus PyCoins para comprar temas para o editor, avatares exclusivos e efeitos de digitação.</p>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-card__icon">🔥</div>
+            <h3 class="feature-card__title">Streaks</h3>
+            <p style="color: var(--text-muted);">Mantenha a chama acesa. Estude todo dia para ganhar multiplicadores de XP insanos.</p>
+          </article>
+        </div>
+      </div>
     </section>
+
+    
+    <section class="section" style="background: rgba(0,0,0,0.2);">
+      <div class="container">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center;">
+          <div data-animation="slide-up">
+            <span class="section__badge">Modo Jogo Ativo</span>
+            <h2 class="section__title">Seu ambiente de treino</h2>
+            <p style="color: var(--text-muted); margin-bottom: 24px; font-size: 1.1rem;">
+              Um editor real, rodando Python no navegador, mas com superpoderes.
+            </p>
+            <ul style="display: flex; flex-direction: column; gap: 16px;">
+              <li style="display: flex; align-items: center; gap: 12px;">
+                <span style="color: var(--success);">✓</span> Feedback instantâneo de erro
+              </li>
+              <li style="display: flex; align-items: center; gap: 12px;">
+                <span style="color: var(--success);">✓</span> Autocomplete inteligente
+              </li>
+              <li style="display: flex; align-items: center; gap: 12px;">
+                <span style="color: var(--success);">✓</span> Dicas que custam moedas (use com sabedoria)
+              </li>
+            </ul>
+            <a href="#" class="btn btn--primary" style="margin-top: 32px;">Testar Editor Agora</a>
+          </div>
+          
+          <div class="game-ui-preview" style="transform: rotate(2deg);">
+            <div class="game-ui__stats">
+              <div>❤️ <span class="game-ui__stat-value">∞</span></div>
+              <div>🪙 <span class="game-ui__stat-value">1,250</span></div>
+              <div>🔥 <span class="game-ui__stat-value">7 dias</span></div>
+            </div>
+            <div style="background: #1e1e1e; padding: 15px; border-radius: 8px; font-family: var(--font-code); color: #ccc;">
+              <span style="color: #569cd6;">def</span> <span style="color: #dcdcaa;">calcular_xp</span>(dias):<br>
+              &nbsp;&nbsp;<span style="color: #6a9955;"># Desafio: Multiplique dias por 100</span><br>
+              &nbsp;&nbsp;<span style="color: #c586c0;">return</span> dias * <span style="color: #b5cea8;">100</span>
+            </div>
+            <div style="margin-top: 15px; display: flex; justify-content: flex-end;">
+              <button class="btn btn--success btn--small" style="background: var(--success); color: white; border: none;">▶ Executar Código</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--faq" id="faq">
+      <div class="container">
+        <header class="section__header">
+          <h2 class="section__title">Dúvidas Frequentes</h2>
+        </header>
+        
+        <div class="faq-grid">
+          <div class="faq__item">
+            <details>
+              <summary class="faq__question">
+                Preciso saber matemática para começar?
+                <span>▼</span>
+              </summary>
+              <div class="faq__answer">
+                <p>Absolutamente não! Programação é sobre lógica e resolução de problemas, não sobre cálculo avançado. Se você sabe somar e subtrair, está pronto para o PyLingo.</p>
+              </div>
+            </details>
+          </div>
+          
+          <div class="faq__item">
+            <details>
+              <summary class="faq__question">
+                O certificado é válido no mercado?
+                <span>▼</span>
+              </summary>
+              <div class="faq__answer">
+                <p>Sim! Ao completar a jornada "Mestre Python", você recebe um certificado verificado com todo o currículo técnico coberto, perfeito para seu LinkedIn.</p>
+              </div>
+            </details>
+          </div>
+
+          <div class="faq__item">
+            <details>
+              <summary class="faq__question">
+                Posso programar pelo celular?
+                <span>▼</span>
+              </summary>
+              <div class="faq__answer">
+                <p>Com certeza. Nossa interface mobile é otimizada para toques, com um teclado especial de símbolos Python para facilitar sua vida no ônibus ou metrô.</p>
+              </div>
+            </details>
+          </div>
+        </div>
+      </div>
+    </section>
+
   </main>
 
   <footer class="site-footer">
-    <p>© <span id="year"></span> PyLingo — Projetinho de estudo</p>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <h3 class="site-header__title">PyLingo</h3>
+          <p>A plataforma de ensino de programação que entende como seu cérebro realmente aprende. Feito com ☕ e 🐍 no Brasil.</p>
+          <div style="margin-top: 20px; display: flex; gap: 15px;">
+            <span>📸</span> <span>🐦</span> <span>💼</span>
+          </div>
+        </div>
+        
+        <div class="footer-col">
+          <h4>Plataforma</h4>
+          <ul>
+            <li><a href="#">Cursos</a></li>
+            <li><a href="#">Preços</a></li>
+            <li><a href="#">Para Empresas</a></li>
+            <li><a href="#">Depoimentos</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-col">
+          <h4>Recursos</h4>
+          <ul>
+            <li><a href="#">Blog</a></li>
+            <li><a href="#">Cheatsheets</a></li>
+            <li><a href="#">Comunidade Discord</a></li>
+            <li><a href="#">Documentação</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-col">
+          <h4>Legal</h4>
+          <ul>
+            <li><a href="#">Termos de Uso</a></li>
+            <li><a href="#">Privacidade</a></li>
+            <li><a href="#">Cookies</a></li>
+          </ul>
+        </div>
+      </div>
+      <div style="text-align: center; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 30px; color: var(--text-muted); font-size: 0.9rem;">
+        &copy; 2024 PyLingo Education. Todos os direitos reservados.
+      </div>
+    </div>
   </footer>
 
   <script>
-    // Atualiza ano no rodapé
-    document.getElementById('year').textContent = new Date().getFullYear();
+    // 1. Efeito de Digitação no Hero
+    const codeLines = [
+      { text: "# Missão: Hackear a NASA (brincadeira)", class: "syntax-comment" },
+      { text: "def", class: "syntax-def" },
+      { text: " aprender_python", class: "syntax-func" },
+      { text: "():", class: "syntax-def" },
+      { text: "\n  xp = 0", class: "syntax-var" },
+      { text: "\n  while", class: "syntax-def" },
+      { text: " not_expert:", class: "syntax-var" },
+      { text: "\n    praticar()", class: "syntax-func" },
+      { text: "\n    xp += 100", class: "syntax-var" },
+      { text: "\n  return", class: "syntax-def" },
+      { text: ' "Dev Contratado! 🚀"', class: "syntax-str" }
+    ];
+
+    const typeWriterElement = document.getElementById('typewriter');
+    let lineIndex = 0;
+    let charIndex = 0;
+
+    function typeCode() {
+      if (lineIndex < codeLines.length) {
+        const line = codeLines[lineIndex];
+        
+        // Cria o span se for o primeiro char da "linha" (token)
+        let span = typeWriterElement.querySelector(`span[data-index="${lineIndex}"]`);
+        if (!span) {
+          span = document.createElement('span');
+          span.className = line.class;
+          span.setAttribute('data-index', lineIndex);
+          typeWriterElement.appendChild(span);
+        }
+
+        // Adiciona caractere
+        if (charIndex < line.text.length) {
+          span.textContent += line.text.charAt(charIndex);
+          charIndex++;
+          
+          // Move o cursor (fake)
+          const cursor = document.querySelector('.cursor');
+          if(cursor) cursor.remove();
+          const newCursor = document.createElement('span');
+          newCursor.className = 'cursor';
+          typeWriterElement.appendChild(newCursor);
+
+          setTimeout(typeCode, Math.random() * 50 + 30); // Velocidade aleatória
+        } else {
+          charIndex = 0;
+          lineIndex++;
+          setTimeout(typeCode, 100);
+        }
+      }
+    }
+
+    // Iniciar digitação quando carregar
+    window.addEventListener('load', typeCode);
+
+    // 2. Animação simples de Scroll
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = 1;
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    });
+
+    document.querySelectorAll('.feature-card, .section__header').forEach((el) => {
+      el.style.opacity = 0;
+      el.style.transform = 'translateY(20px)';
+      el.style.transition = 'all 0.6s ease-out';
+      observer.observe(el);
+    });
   </script>
-  <script src="js/auth.js" defer></script>
-  <script src="js/user.js" defer></script>
 </body>
 </html>
